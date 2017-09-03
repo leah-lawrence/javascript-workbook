@@ -5,21 +5,45 @@ document.addEventListener('DOMContentLoaded', () => {
   masterMind.startGame();
 });
 
-/*************************************************
-*** This class simulates a game of Mastermind. ***
-**************************************************/
+/********************************************************************
+*** This class creates a 1-player game of Mastermind in a window. ***
+*********************************************************************/
+
+// The mastermind class creates a blank board of 10 rows x 5 columns, in which
+// players place their color selections. A horizontal palette of available color
+// choices appears to the left of the board. When a player clicks a color in the
+// palette the color appears on the board, one column at a time. There are 3
+// buttons to the right of the board: Check, Clear, and New Game. Clicking
+// Check will compare the player's color sequence against the solution. It will
+// display the results of the guess in the 5th column of the board in an x-y
+// format, where 'x' represents the number of exact matches and 'y' shows the
+// remaining number of correct colors, which are in the wrong place. The class
+// utilizes mouse click listeners to progress through the game.
 
 class MasterMind {
   constructor () {
-    // All Global Constants
-    this.codeLength = 4;
-    this.maxChecks = 10;
-    this.colorCount = 8;
-    // All Global Variables - reset with each new game in processStart()
-    this.currentRow = null;
-    this.currentCol = null;
-    this.guess = null;
-    this.solution = null;
+    // ALL GLOBAL CONSTANTS
+    this.codeLength = 4;  // The hidden color sequence has 4 values
+    this.maxChecks = 10;  // The player gets 10 opportunities to guess the color
+    // code. These 10 opportunites are represented as a board with 10 empty rows.
+    this.colorCount = 8;  // There are 8 different colors, which  are represented
+    // by the values 0-7. The empty cells on the game board are represented by
+    // color value 8 (gray).
+
+    // ALL GLOBAL VARIABLES - reset with each new game in processStart().
+    this.currentRow = null; // As the player progresses through the game, the
+    // currentRow will decrease. If currentRow reaches -1, then the game is over.
+    // CurrentRrow is row that the user is adding their color guesses to.
+    this.currentCol = null; // The board is represented by a grid of rows and
+    // columns, similar to an Excel spread sheet. The users adds their color
+    // guesses to the currentRow one column at a time, sequentially. As They
+    // select their color choices currentCol increases. If the player choices
+    // to clear their choices, then currentCol is reset to zero and the color
+    // guesses on the board are reset to the color of the board (gray, code 8).
+    this.solution = null; // An array with 4 values representing the color
+    // codes of the sequence.
+    this.guess = null; // An array of 4 guesses that is generated as the player
+    // makes their color guesses.
   }
 
   startGame () {
