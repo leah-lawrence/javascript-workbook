@@ -52,19 +52,34 @@ if (typeof describe === 'function') {
             assert.equal(rockPaperScissors('paper', 'paper'), "It's a tie!");
             assert.equal(rockPaperScissors('scissors', 'scissors'), "It's a tie!");
         });
-        it('should detect which hand won', () => {
-            assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
+        it('all scenarios for hand 1 winning', () => {
             assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
-            assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
             assert.equal(rockPaperScissors('paper', 'rock'), "Hand one wins!");
             assert.equal(rockPaperScissors('scissors', 'paper'), "Hand one wins!");
+        });
+        it('all scenarios for hand 2 winning', () => {
+            assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
+            assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
             assert.equal(rockPaperScissors('scissors', 'rock'), "Hand two wins!");
         });
-        it('should scrub input to ensure lowercase with "trim"ed whitepace', () => {
-            assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
-            assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
-            assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
+        it('should scrub input to ensure toLowerCase', () => {
+            assert.equal(rockPaperScissors('ROCK', 'PAPER'), "Hand two wins!");
+            assert.equal(rockPaperScissors('ROCK', 'SCISSORS'), "Hand one wins!");
+            assert.equal(rockPaperScissors('PAPER', 'SCISSORS'), "Hand two wins!");
+            assert.equal(rockPaperScissors('PAPER', 'SCISSORS'), "Hand two wins!");
+            assert.equal(rockPaperScissors('SCISSORS', 'ROCK'), "Hand two wins!");
+            assert.equal(rockPaperScissors('SCISSORS', 'PAPER'), "Hand one wins!");
         });
+        it('should scrub input to ensure trim', () => {
+            assert.equal(rockPaperScissors(' rock ', ' scissors '), "Hand one wins!");
+            assert.equal(rockPaperScissors(' paper ', ' rock '), "Hand one wins!");
+            assert.equal(rockPaperScissors(' scissors ', ' paper '), "Hand one wins!");
+            assert.equal(rockPaperScissors(' rock ', ' paper '), "Hand two wins!");
+            assert.equal(rockPaperScissors(' paper ', ' scissors '), "Hand two wins!");
+            assert.equal(rockPaperScissors(' scissors ', ' rock '), "Hand two wins!");
+        });
+
+
     });
 } else {
 
@@ -75,6 +90,8 @@ if (typeof describe === 'function') {
 
 /*
 Class Notes
+
+To run a test in the terminal: npm test 02week/tests.js
 
 const assert = require('assert');
 const readline = require('readline');
