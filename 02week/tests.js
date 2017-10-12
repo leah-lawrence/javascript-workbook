@@ -78,15 +78,14 @@ if (typeof describe === 'function') {
             assert.equal(rockPaperScissors(' paper ', ' scissors '), "Hand two wins!");
             assert.equal(rockPaperScissors(' scissors ', ' rock '), "Hand two wins!");
         });
-        /*it('should scrub input to ensure valid entry', () => {
-            assert.equal(rockPaperScissors(' rock ', ' scissors '), "Hand one wins!");
-            assert.equal(rockPaperScissors(' paper ', ' rock '), "Hand one wins!");
-            assert.equal(rockPaperScissors(' scissors ', ' paper '), "Hand one wins!");
-            assert.equal(rockPaperScissors(' rock ', ' paper '), "Hand two wins!");
-            assert.equal(rockPaperScissors(' paper ', ' scissors '), "Hand two wins!");
-            assert.equal(rockPaperScissors(' scissors ', ' rock '), "Hand two wins!");
-        });*/
-
+        it('no funny business', () => {
+            assert.equal(rockPaperScissors('rOcK', 'sCiSsOrS'), "Hand one wins!");
+            assert.equal(rockPaperScissors('pApEr', 'rOcK'), "Hand one wins!");
+            assert.equal(rockPaperScissors('sCiSsOrS', 'pApEr'), "Hand one wins!");
+            assert.equal(rockPaperScissors('RoCk', 'PaPeR'), "Hand two wins!");
+            assert.equal(rockPaperScissors('PaPeR', 'ScIsSoRs'), "Hand two wins!");
+            assert.equal(rockPaperScissors('ScIsSoRs', 'RoCk'), "Hand two wins!");
+        });
 
     });
 } else {
