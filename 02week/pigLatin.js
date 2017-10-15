@@ -10,20 +10,18 @@ const rl = readline.createInterface({
 function pigLatin(str) {
 
     let fullWord = str.toLowerCase().trim(); // clean up the input
-
-    var vowel = ['a', 'e', 'i', 'o', 'u']; // new arrays vowels
-    let firstLetter = fullWord[0]; // identifies first letter of word
+    let vowel = ['a', 'e', 'i', 'o', 'u']; // vowel array
+    let firstLetter = fullWord[0]; // assigns variable to the first letter of input
 
     if (vowel.includes(firstLetter)) {
-        // run vowel conditions  
         return fullWord + 'yay';
     } else {
-        // run consonant conditions
-        //for(var i = 1; fullWord.length; i++){
-
+        for(var i = 0; fullWord.length; i++) {
+          if (vowel.includes(fullWord[i])) {
+            return fullWord.slice(i) + fullWord.slice(0,i) + 'ay';
+          }
         }
     }
-
 }
 
 /*
