@@ -10,9 +10,12 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-  // Your code here
+  let fullWord = word.toString().toLowerCase().trim(); // Clean up the input
+  let firstHalf = fullWord.substring(0, 2); // Pull out first two letters of a string
 
 }
+
+pigLagin();
 
 
 function getPrompt() {
@@ -49,3 +52,31 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
+
+/*Consonants
+car — > archer
+
+Vowels
+exam —> xamyay
+
+let haystack = “Bob is a nice guy”;
+let needle = ‘nice’;
+console.log(haystack.indexOf(needle));
+// returns 9
+
+needle = 0;
+
+let fullWord = “straw”;
+let firstHalf = fullWord.substring(0, 3); // first half
+let secondHold = fullWord.substring(3,5); // full word
+let secondHold = fullWord.substring(3); // all the way to the end
+let howLongIsTheWord = fullWord.length;
+console.log(firstHalf);
+console.log(secondHalf);
+console.log(howLongIsTheWord);
+
+let translated = secondHalf + firstHalf + “ay”;
+console.log(translated);
+
+Indexof
+substring*/
