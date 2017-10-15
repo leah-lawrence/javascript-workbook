@@ -24,17 +24,6 @@ function pigLatin(str) {
     }
 }
 
-/*
-pigLatin('car'); // arcay
-pigLatin('dog'); // ogday
-pigLatin('create'); // eatecray
-pigLatin('valley'); // alleyvay
-pigLatin('egg'); // eggyay
-pigLatin('emission'); // emissionyay
-pigLatin('HeLlO '); // ellohay
-pigLatin(' RoCkEt'); // ocketray
-*/ 
-
 function getPrompt() {
     rl.question('word ', (answer) => {
         console.log(pigLatin(answer));
