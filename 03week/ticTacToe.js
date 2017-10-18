@@ -91,3 +91,29 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
+
+
+/***************
+
+Class Pseudocode
+
+3 Arrays inside of one Array. Inside each array is a string. 
+
+First element in the first array --> board[0][0]
+First element in third array --> board[2][0]
+
+Inserting an element in first
+let row = [ '', '', ''];
+row[1] = 'x';
+row[2] = '0';
+console.log(row);
+
+Keep track of player's turn. 
+Flip a boolean; assign a person with variable
+
+Check for when should call for horizontal win. If not, verticle. If not diagonal. 
+Horizontal win: is the column all the same?
+Verticle win: are the indexes of all the arrays all the same?
+just return true or false, don't return which player won. 
+
+***************/
