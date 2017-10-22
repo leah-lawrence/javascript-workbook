@@ -8,66 +8,78 @@ const rl = readline.createInterface({
 });
 
 let stacks = {
-    a: [4, 3, 2, 1],
+    a: [1],
     b: [],
-    c: []
+    c: [4, 3, 2]
 };
 
-// Renaming each stack to a peg
-// Vars return as arrays
-// Auto sorts arrays with the lowest number always at the end
-let peg1 = stacks.a.reverse();
-let peg2 = stacks.b.reverse();
-let peg3 = stacks.c.reverse();
-
-let pegNames = ['a', 'b', 'c'];
-
 function printStacks() {
-    console.log("a: " + peg1);
-    console.log("b: " + peg2);
-    console.log("c: " + peg3);
+    console.log("a: " + stacks.a);
+    console.log("b: " + stacks.b);
+    console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-    // If the 
-
+function movePiece(startStack, endStack) {
+    let move = stacks[startStack].pop();
+    stacks[endStack].push(move);
 }
 
-function isLegal(start, end) {
+function isLegal(startStack, endStack) {
 
-    // Are the user inputs valid? 
-    if (!pegNames.includes(start) || !pegNames.includes(end)) {
-        console.log("Invalid Stack Specified");
-        return;
+    // Are the user inputs valid?  Is the peg empty?
+    let pegNames = ['a', 'b', 'c'];
+    if (!pegNames.includes(startStack) || !pegNames.includes(endStack)) {
+        console.log("Invalid Stack Name");
+        return false;
     }
 
+    // Are the inputs equal?
+    if (startStack === endStack) {
+        console.log("Can Not Move To Itself");
+        return false;
+    }
+
+    // Is the first peg empty?
+    if (stacks[startStack].length === 0) {
+        console.log("Empty Start Peg");
+        return false;
+    }
+
+    // Can Not Place a Large Disk On Small Disk
+    let firstPeg = stacks[startStack][stacks[startStack].length - 1];
+    let lastPeg = stacks[endStack][stacks[endStack].length - 1];
+
+    if (firstPeg > lastPeg) {
+        console.log("Can Not Place A Larger Disk On A Smaller Disk");
+        return false;
+    }
+
+    return true;
 }
 
 function checkForWin() {
+    /*
+        // ?? Comparing arrays doesn't work
 
-    // Win condition
-    let win = [4, 3, 2, 1];
-
-    // Are all of the numbers in order at the end of the stack?
-    // 
-    if (peg3 === win) {
-        // Return True/as won
-    } else {
-        // Return False/as lost
-    }
+        if () {
+            // Run win condition
+            return true;
+        } else {
+            // Keep Playing
+            return false;
+        }
+    */
 }
 
 function towersOfHanoi(startStack, endStack) {
 
-    // Are the user inputs valid? 
-    let start = startStack;
-    let end = endStack;
-    isLegal(start, end);
-
-    // Move piece
+    // Checks to see if legal move
+    if (isLegal(startStack, endStack)) {
+        // If True, move piece from end of one stack to another
+        movePiece(startStack, endStack);
+    }
 
     // Check for win
-    checkForWin();
 
 }
 
