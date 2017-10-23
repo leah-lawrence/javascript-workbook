@@ -28,6 +28,7 @@ function isLegal(startStack, endStack) {
 
     // Are the user inputs valid?  Is the peg empty?
     let pegNames = ['a', 'b', 'c'];
+
     if (!pegNames.includes(startStack) || !pegNames.includes(endStack)) {
         console.log("Invalid Stack Name");
         return false;
@@ -45,7 +46,7 @@ function isLegal(startStack, endStack) {
         return false;
     }
 
-    // Can Not Place a Large Disk On Small Disk
+    // Placing a large disk on top of a smaller one?
     let firstPeg = stacks[startStack][stacks[startStack].length - 1];
     let lastPeg = stacks[endStack][stacks[endStack].length - 1];
 
@@ -60,6 +61,11 @@ function isLegal(startStack, endStack) {
 function checkForWin() {
     /*
         // ?? Comparing arrays doesn't work
+
+        4 ways to do a win condition
+        // Equals Method for Array
+        // Check element by Element
+        // length of c is 4
 
         if () {
             // Run win condition
