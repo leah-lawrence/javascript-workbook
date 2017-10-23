@@ -12,8 +12,8 @@ let board = [
     [' ', ' ', ' ']
 ];
 
-let playerTurn = 'X' // Every time you process a turn, you need to swap players. Before swapping, check to see if the player won
-// let playerTurn = 'O';
+// Starting Player
+let playerTurn = 'X'
 
 function printBoard() {
     console.log('   0  1  2');
@@ -25,49 +25,113 @@ function printBoard() {
 }
 
 function horizontalWin() {
-    if ((board[0][0] === playerTurn && board[0][1] === playerTurn && board[0][2] === playerTurn) ||
-        (board[1][0] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn) ||
-        (board[2][0] === playerTurn && board[2][1] === playerTurn && board[2][2] === playerTurn)) {
+
+    // Top Row
+    if (board[0][0] === playerTurn &&
+        board[0][1] === playerTurn &&
+        board[0][2] === playerTurn) {
         return true;
     }
+
+    // Middle Row
+    if (board[1][0] === playerTurn &&
+        board[1][1] === playerTurn &&
+        board[1][2] === playerTurn) {
+        return true;
+    }
+    // Bottom Row
+    if (board[2][0] === playerTurn &&
+        board[2][1] === playerTurn &&
+        board[2][2] === playerTurn) {
+        return true;
+    }
+
+    // If there is not a horizontal win, return false
+    return false;
 }
 
 function verticalWin() {
-    if ((board[0][0] === playerTurn && board[1][0] === playerTurn && board[2][0] === playerTurn) ||
-        (board[0][1] === playerTurn && board[1][1] === playerTurn && board[2][1] === playerTurn) ||
-        (board[0][2] === playerTurn && board[1][2] === playerTurn && board[2][2] === playerTurn)) {
+
+    // Left Row
+    if (board[0][0] === playerTurn &&
+        board[1][0] === playerTurn &&
+        board[2][0] === playerTurn) {
         return true;
     }
+
+    // Middle Row
+    if (board[0][1] === playerTurn &&
+        board[1][1] === playerTurn &&
+        board[2][1] === playerTurn) {
+        return true;
+    }
+
+    // Right Row
+    if (board[0][2] === playerTurn &&
+        board[1][2] === playerTurn &&
+        board[2][2] === playerTurn) {
+        return true;
+    }
+
+    // If there is not a vertical win, return false
+    return false;
 }
 
 function diagonalWin() {
-    if ((board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn) ||
-        (board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0] === playerTurn)) {
+
+    // Left to Right
+    if (board[0][0] === playerTurn &&
+        board[1][1] === playerTurn &&
+        board[2][2] === playerTurn) {
         return true;
     }
+
+    // Right to Left
+    if (board[0][2] === playerTurn &&
+        board[1][1] === playerTurn &&
+        board[2][0] === playerTurn) {
+        return true;
+    }
+
+    // If there is not a diagional win, return false
+    return false;
+
 }
 
 function checkForWin() {
-    if (horizontalWin() || verticalWin() || diagonalWin()) {
+
+    // If there is a win, return true
+    if (horizontalWin() ||
+        verticalWin() ||
+        diagonalWin()) {
         return true;
     }
+
+    // if there is not a win, return false
+    return false;
 }
 
 function ticTacToe(row, column) {
-    
+
     // Convert strings to integers
     row = Number.parseInt(row);
     column = Number.parseInt(column);
 
-    // Check for valid inputs
+    // Check for a valid row input
     if (row >= 3 || row < 0 || !Number.isInteger(row)) {
-        console.log("Invalid row");
+        console.log("!ERROR: INVALID ROW");
         return;
-    } if (column >= 3 || column < 0 || !Number.isInteger(column)) {
-        console.log("Invalid column");
+    }
+
+    // Check for a valid column input
+    if (column >= 3 || column < 0 || !Number.isInteger(column)) {
+        console.log("!ERROR: INVALID COLUMN");
         return;
-    } if (board[row][column] != " ") {
-        console.log("Space taken, try again");
+    }
+
+    // Check for empty space
+    if (board[row][column] != " ") {
+        console.log("!ERROR: SPACE TAKEN TRY AGAIN");
         return;
     }
 
@@ -79,8 +143,8 @@ function ticTacToe(row, column) {
         console.log("Player " + playerTurn + " wins!");
         process.exit(-1);
     }
-    
-    // Togggle player turn
+
+    // Switch to the next player
     if (playerTurn === "X") {
         playerTurn = 'O';
     } else {
@@ -158,6 +222,13 @@ if (typeof describe === 'function') {
 
 
 /***************
+
+
+board = [
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    ['g', 'h', 'i']
+];
 
 Class Pseudocode
 
