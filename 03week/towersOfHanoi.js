@@ -7,42 +7,46 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+// This object establishes the game board
 let stacks = {
-    a: [1],
+    a: [4, 3, 2, 1],
     b: [],
-    c: [4, 3, 2]
+    c: []
 };
 
+// This function prints the game board so it can be viewed in console
 function printStacks() {
     console.log("a: " + stacks.a);
     console.log("b: " + stacks.b);
     console.log("c: " + stacks.c);
 }
 
+// This function moves disks from one stack to another
 function movePiece(startStack, endStack) {
     let move = stacks[startStack].pop();
     stacks[endStack].push(move);
 }
 
+// This function checks to see if the move is legal
 function isLegal(startStack, endStack) {
 
     // Are the user inputs valid?  Is the peg empty?
     let pegNames = ['a', 'b', 'c'];
 
     if (!pegNames.includes(startStack) || !pegNames.includes(endStack)) {
-        console.log("Invalid Stack Name");
+        console.log("!ERROR: Invalid Start Stack Name");
         return false;
     }
 
     // Are the inputs equal?
     if (startStack === endStack) {
-        console.log("Can Not Move To Itself");
+        console.log("!ERROR: Can Not Move To Itself");
         return false;
     }
 
     // Is the first peg empty?
     if (stacks[startStack].length === 0) {
-        console.log("Empty Start Peg");
+        console.log("!ERROR: Empty Start Peg");
         return false;
     }
 
@@ -51,32 +55,29 @@ function isLegal(startStack, endStack) {
     let lastPeg = stacks[endStack][stacks[endStack].length - 1];
 
     if (firstPeg > lastPeg) {
-        console.log("Can Not Place A Larger Disk On A Smaller Disk");
+        console.log("!ERROR: Can Not Place A Larger Disk On A Smaller Disk");
         return false;
     }
 
     return true;
 }
 
+// This function checks to see if the current state of the board is in win state
 function checkForWin() {
-    /*
-        // ?? Comparing arrays doesn't work
 
-        4 ways to do a win condition
-        // Equals Method for Array
-        // Check element by Element
-        // length of c is 4
+    // Checks each element in stacks.c
+    if (stacks.c[0] === 4 &&
+        stacks.c[1] === 3 &&
+        stacks.c[2] === 2 &&
+        stacks.c[3] === 1) {
+        return true;
+    } else {
+      return false;
+    }
 
-        if () {
-            // Run win condition
-            return true;
-        } else {
-            // Keep Playing
-            return false;
-        }
-    */
 }
 
+// This function runs the order of operations
 function towersOfHanoi(startStack, endStack) {
 
     // Checks to see if legal move
@@ -86,9 +87,14 @@ function towersOfHanoi(startStack, endStack) {
     }
 
     // Check for win
+    if (checkForWin()) {
+        console.log("You Win!");
+        process.exit();
+    }
 
 }
 
+// This function prompts the user for input
 function getPrompt() {
     printStacks();
     rl.question('start stack: ', (startStack) => {
