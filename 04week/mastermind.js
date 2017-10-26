@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 const readline = require('readline');
+const colors = require('colors');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -10,6 +11,10 @@ const rl = readline.createInterface({
 let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+let part1 = '2'.red;
+let part2 = '2'.white;
+let result = ('2'.red)+"-"+('2'.white);
 
 function printBoard() {
   for (let i = 0; i < board.length; i++) {
@@ -28,16 +33,22 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
+// generateHint() should take two arguments, solution and guess
+// In generateHint(), create variables solutionArray and guessArray that each split up passed in arguments, .splitting on ''(empty string).
+function generateHint(solution, guess) {
+  let solutionArray = solution.split(" ");
+  let guessArray = guess.split(" ");
 }
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
-  Hello World
-}
 
+  // In mastermind(), if the guess you passed in equals the solution, return 'You guessed it!';
+  if (guess === solution) {
+    return "You guessed it!";
+  }
+
+}
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
@@ -63,10 +74,12 @@ if (typeof describe === 'function') {
 
   describe('#generateHint()', () => {
     it('should generate hints', () => {
-      assert.equal(generateHint('abdc'), '2-2');
+      let expected = ('2'.red)+"-"+('2'.white);
+      assert.equal(generateHint('abdc'), expected);
     });
     it('should generate hints if solution has duplicates', () => {
-      assert.equal(generateHint('aabb'), '1-1');
+      let expected = ('1'.red)+"-"+('1'.white);
+      assert.equal(generateHint('aabb'), expected);
     });
 
   });
