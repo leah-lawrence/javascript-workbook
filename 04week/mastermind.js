@@ -55,8 +55,6 @@ function generateHint(guess) {
 
         let targetIndex = solutionArray.indexOf(guessArray[i]);
 
-        //console.log(targetIndex);
-
         if (targetIndex > -1) {
             correctLetters += 1;
             solutionArray[i] = null;
@@ -82,7 +80,7 @@ function mastermind(guess) {
     } 
 
     // add guess and hint to the board
-    let hint = generateHint(çguess);
+    let hint = generateHint(guess);
     if (board.length < 10) {
         board.push(hint + " " + guess);
     }
