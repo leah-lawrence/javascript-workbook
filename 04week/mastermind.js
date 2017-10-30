@@ -82,7 +82,7 @@ function mastermind(guess) {
     } 
 
     // add guess and hint to the board
-    let hint = generateHint(solution, guess);
+    let hint = generateHint(çguess);
     if (board.length < 10) {
         board.push(hint + " " + guess);
     }
