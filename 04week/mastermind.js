@@ -30,23 +30,23 @@ function getRandomInt(min, max) {
 }
 
 // Generate a hint
-function generateHint(solution, guess) {
+function generateHint(guess) {
 
     // split strings into arrays
-    let solutionStr = 'solution';
-    let guessStr = 'guess';
+    let solutionStr = solution;
+    let guessStr = guess;
     let solutionArray = solutionStr.split('');
     let guessArray = guessStr.split('');
+    // console.log(solutionArray);
+    // console.log(guessArray);
 
     // determines number of correct letter locations
     let correctLetterLocations = 0;
     for (let i = 0; i < solutionArray.length; i++) {
-
         if (solutionArray[i] === guessArray[i]) {
-            correctLetterLocations++;
+            correctLetterLocations += 1;
             solutionArray[i] = null;
         }
-
     }
 
     // determines the number of correct letters
@@ -55,8 +55,10 @@ function generateHint(solution, guess) {
 
         let targetIndex = solutionArray.indexOf(guessArray[i]);
 
+        //console.log(targetIndex);
+
         if (targetIndex > -1) {
-            correctLetters++;
+            correctLetters += 1;
             solutionArray[i] = null;
         }
     }
@@ -64,7 +66,7 @@ function generateHint(solution, guess) {
     // return hint string
     let part1 = colors.red(correctLetterLocations); // returns a string
     let part2 = colors.white(correctLetters); // returns a string
-    let result = part1 + "-" + part2; 
+    let result = part1 + "-" + part2;
     // console.log(result);
     return result; // returns a string
 
@@ -80,10 +82,10 @@ function mastermind(guess) {
     } 
 
     // add guess and hint to the board
-    let hint = generateHint();
+    let hint = generateHint(solution, guess);
     if (board.length < 10) {
         board.push(hint + " " + guess);
-    } 
+    }
 
     // end the game after 10 incorrect guesses
     if (board.length >= 10) {
