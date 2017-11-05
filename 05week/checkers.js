@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 const readline = require('readline');
+const colors = require('colors');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -74,7 +75,7 @@ function Game() {
                 // places checker on every other row
                 if ((row + column) % 2 === 1) {
                     // Prints out R from class Checker 
-                    this.board.grid[row][column] = new Checker("R");
+                    this.board.grid[row][column] = new Checker('R');
                 }
             }
         }
@@ -92,7 +93,7 @@ function Game() {
         }
     };
 
-    // validate input
+    // validate inputs
     this.ValidateInputs = function(origin, destination, board) {
 
         this.valid = true;
@@ -138,6 +139,14 @@ function Game() {
             return;
         }
 
+        // checks to see if moving to the same destination
+        if (this.originRow === this.destinationRow &&
+            this.originColumn === this.destinationColumn) {
+            console.log("!!ERROR: You did not move the checker piece");
+            this.valid = false;
+            return;
+        }
+
         // checks to see if there is a piece already in destination
         if (board.grid[this.destinationRow][this.destinationColumn] !== null) {
             console.log("!!ERROR: You can not place a checker on another checker");
@@ -155,8 +164,8 @@ function Game() {
     };
 
     this.moveChecker = function(origin, destination) {
-      let inputs = new this.ValidateInputs(origin, destination, this.board);
-      return inputs;
+        let inputs = new this.ValidateInputs(origin, destination, this.board);
+        return inputs;
     };
 
     // end of Game()   
