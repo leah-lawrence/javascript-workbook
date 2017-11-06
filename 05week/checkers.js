@@ -62,7 +62,7 @@ function Board() {
 function Game() {
 
     this.board = new Board();
-    this.playerTurn = 'R';
+    // this.playerTurn = 'R';
 
     this.start = function() {
         this.board.createGrid();
@@ -96,17 +96,15 @@ function Game() {
     // validate inputs
     this.ValidateInputs = function(origin, destination, board) {
 
-        this.valid = true;
-
         // take input and split 
         let originInput = origin.split('');
         let destinationInput = destination.split('');
 
         // convert strings to integers
-        this.originRow = Number.parseInt(originInput[0]);
-        this.originColumn = Number.parseInt(originInput[1]);
-        this.destinationRow = Number.parseInt(destinationInput[0]);
-        this.destinationColumn = Number.parseInt(destinationInput[1]);
+        this.originRow = Number.parseInt(originInput[0]); // origin row
+        this.originColumn = Number.parseInt(originInput[1]); // origin column
+        this.destinationRow = Number.parseInt(destinationInput[0]); // destination row
+        this.destinationColumn = Number.parseInt(destinationInput[1]); // destination column
 
         // checkes if this input is a number
         if (!Number.isInteger(this.originRow) || !Number.isInteger(this.originColumn) ||
@@ -132,40 +130,57 @@ function Game() {
             return;
         }
 
-        // checks to see if there is a piece in the input
-        if (board.grid[this.originRow][this.originColumn] === null) {
+        this.valid = true;
+        return;
+    };
+
+    // validate moves
+    let ValidateMoves = function(inputs, board) {
+
+        let OR = inputs.originRow;
+        let OC = inputs.originColumn;
+        let DR = inputs.destinationRow;
+        let DC = inputs.destinationColumn;
+
+        // checks to see if player made a move
+        if (board.grid[OR][OC] === null) {
             console.log("!!ERROR: You did not pick a checker piece");
             this.valid = false;
             return;
         }
 
         // checks to see if moving to the same destination
-        if (this.originRow === this.destinationRow &&
-            this.originColumn === this.destinationColumn) {
+        if (OR === DR && OC === DC) {
             console.log("!!ERROR: You did not move the checker piece");
             this.valid = false;
             return;
         }
 
         // checks to see if there is a piece already in destination
-        if (board.grid[this.destinationRow][this.destinationColumn] !== null) {
+        if (board.grid[DR][DC] !== null) {
             console.log("!!ERROR: You can not place a checker on another checker");
             this.valid = false;
             return;
         }
 
-        // checks to see if it is the correct player's turn
-        // if (true) {
-        //     console.log("!!ERROR: Select your own checker");
-        //     this.valid = false;
-        //     return;
-        // }
+        // checks to see if the checker moved diagionally
+        if ((OR - 1 === DR || OR + 1 === DR) || (OC - 1 === DR || OC + 1 === DR)) {
+            console.log("!!ERROR: You need to move your piece diagionally");
+            this.valid = false;
+            return;
+        }
+
+        this.valid = true;
         return;
-    };
+    }
 
     this.moveChecker = function(origin, destination) {
+        // checks to see if the inputs are valid
         let inputs = new this.ValidateInputs(origin, destination, this.board);
-        return inputs;
+        // checks to see if the moves are valid
+        let moves = new ValidateMoves(inputs, this.board);
+        return moves;
+        // makes move
     };
 
     // end of Game()   
