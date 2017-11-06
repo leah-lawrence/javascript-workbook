@@ -145,33 +145,34 @@ function Game() {
         // checks to see if player made a move
         if (board.grid[OR][OC] === null) {
             console.log("!!ERROR: You did not pick a checker piece");
-            this.valid = false;
-            return;
+            return false;
         }
 
         // checks to see if moving to the same destination
         if (OR === DR && OC === DC) {
             console.log("!!ERROR: You did not move the checker piece");
-            this.valid = false;
-            return;
+            return false;
         }
 
         // checks to see if there is a piece already in destination
         if (board.grid[DR][DC] !== null) {
             console.log("!!ERROR: You can not place a checker on another checker");
-            this.valid = false;
-            return;
+            return false;
         }
 
         // checks to see if the checker moved diagionally
-        if ((OR - 1 === DR || OR + 1 === DR) || (OC - 1 === DR || OC + 1 === DR)) {
-            console.log("!!ERROR: You need to move your piece diagionally");
-            this.valid = false;
-            return;
+        // if ((OR - 1 === DR || OR + 1 === DR) && (OC - 1 === DR || OC + 1 === DR)) {
+        if ((OR - 1 === DR && OC - 1 === DC) ||
+            (OR - 1 === DR && OC + 1 === DC) ||
+            (OR + 1 === DR && OC - 1 === DC) ||
+            (OR + 1 === DR && OC + 1 === DC)) {
+            return true;
+        } else {
+            console.log("!!ERROR: Invalid move");
+            return false;
         }
 
-        this.valid = true;
-        return;
+        return false;
     }
 
     this.moveChecker = function(origin, destination) {
