@@ -74,6 +74,7 @@ function Board() {
 function Game() {
 
     this.board = new Board();
+    // player turn
     this.playerTurn = 'R';
 
     this.start = function() {
@@ -149,12 +150,15 @@ function Game() {
     // validate moves
     this.ValidateMoves = function(inputs) {
 
-        let OR = inputs.originRow;
-        let OC = inputs.originColumn;
-        let DR = inputs.destinationRow;
-        let DC = inputs.destinationColumn;
+        // easy to read
+        let OR = inputs.originRow; let OC = inputs.originColumn; 
+        let DR = inputs.destinationRow; let DC = inputs.destinationColumn;
 
         // If (piece is king) { move piece };
+        // checks to see if player is a king
+        if (true) {
+
+        }
 
         // checks to see if player made a move
         if (this.board.grid[OR][OC] === null) {
@@ -180,7 +184,7 @@ function Game() {
             return false;
         }
 
-        // Check each legal move.  Off board moves checked earlier in ValidateInput
+        // check each legal move. Off board moves checked earlier in ValidateInput
         // checks to see if the checker moved diagionally 1 space
         if ((OR - 1 === DR && OC - 1 === DC) ||
             (OR - 1 === DR && OC + 1 === DC) ||
@@ -206,27 +210,64 @@ function Game() {
 
     }
 
-    this.moveChecker = function(origin, destination) {
-        // checks to see if the inputs are valid
-        let inputs = new this.ValidateInputs(origin, destination, this.board); // is there a better way to do this as to avoid passing in board?
-        // Return to getPrompt if input was invalid
-        if (!inputs.valid) {
-            return;
-        }
-        // checks to see if the moves are valid
-        if (!this.ValidateMoves(inputs)) {
-            // Return to getPrompt if move is invalid
-            return;
-        }
-        // Actually move the checker here
+    this.removeChecker = function(inputs) {
+        // sets origin to null
+        this.board.grid[inputs.originRow][inputs.originColumn] = null;
+        return;
 
+    }
 
-        // Switch to the next player
+    this.addChecker = function(inputs) {
+        // adds a checker piece to destination
+        this.board.grid[inputs.destinationRow][inputs.destinationColumn] = new Checker(this.playerTurn);
+        return;
+
+    }
+
+    this.removeOpponent = function(inputs) {
+        
+         // easy to read
+        let OR = inputs.originRow; let OC = inputs.originColumn; 
+        let DR = inputs.destinationRow; let DC = inputs.destinationColumn;
+
+        if ((OR - 1 === null && OC - 1 === null) ||
+            (OR - 1 === null && OC + 1 === null) ||
+            (OR + 1 === null && OC - 1 === null) ||
+            (OR + 1 === null && OC + 1 === null)) {
+            console.log("amen");
+        }
+    }
+
+    this.togglePlayer = function() {
+        // switch to the next player
         if (this.playerTurn === 'R') {
             this.playerTurn = 'B';
         } else {
             this.playerTurn = 'R';
         }
+    }
+
+    this.moveChecker = function(origin, destination) {
+
+        // checks to see if the inputs are valid
+        let inputs = new this.ValidateInputs(origin, destination); // is there a better way to do this as to avoid passing in board?
+
+        if (!inputs.valid) {
+            return; // Return to getPrompt if move is invalid
+        }
+
+        // checks to see if the moves are valid
+        if (!this.ValidateMoves(inputs)) {
+            return; // Return to getPrompt if move is invalid
+        }
+
+        // move the checker here
+        this.removeChecker(inputs);
+        this.addChecker(inputs);
+        this.removeOpponent(inputs);
+
+        // toggle player
+        this.togglePlayer();
     };
 
     // end of Game()   
