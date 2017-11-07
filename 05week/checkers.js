@@ -1,3 +1,14 @@
+/******
+In class Notes
+
+Diagional move only
+Can jump an opponent
+Can capture an oponents piece, can get another turn
+King can move backwards and forwards
+Double jump, if jump can take another turn
+
+*******/
+
 'use strict';
 
 const assert = require('assert');
@@ -12,8 +23,9 @@ const rl = readline.createInterface({
 function Checker(symbol) {
 
     this.symbol = symbol;
+    // Need a king state or symbol
+    // Need specific moving rules for when in kinged state (backwards king, not when not)
 
-    // end of Checker()
 }
 
 function Board() {
@@ -62,7 +74,7 @@ function Board() {
 function Game() {
 
     this.board = new Board();
-    // this.playerTurn = 'R';
+    this.playerTurn = 'R';
 
     this.start = function() {
         this.board.createGrid();
@@ -135,16 +147,24 @@ function Game() {
     };
 
     // validate moves
-    let ValidateMoves = function(inputs, board) {
+    this.ValidateMoves = function(inputs) {
 
         let OR = inputs.originRow;
         let OC = inputs.originColumn;
         let DR = inputs.destinationRow;
         let DC = inputs.destinationColumn;
 
+        // If (piece is king) { move piece };
+
         // checks to see if player made a move
-        if (board.grid[OR][OC] === null) {
+        if (this.board.grid[OR][OC] === null) {
             console.log("!!ERROR: You did not pick a checker piece");
+            return false;
+        }
+
+        // checks to see if player moved their piece
+        if (this.board.grid[OR][OC].symbol !== this.playerTurn) {
+            console.log("!!ERROR: You must select your own piece");
             return false;
         }
 
@@ -155,33 +175,58 @@ function Game() {
         }
 
         // checks to see if there is a piece already in destination
-        if (board.grid[DR][DC] !== null) {
+        if (this.board.grid[DR][DC] !== null) {
             console.log("!!ERROR: You can not place a checker on another checker");
             return false;
         }
 
-        // checks to see if the checker moved diagionally
-        // if ((OR - 1 === DR || OR + 1 === DR) && (OC - 1 === DR || OC + 1 === DR)) {
+        // Check each legal move.  Off board moves checked earlier in ValidateInput
+        // checks to see if the checker moved diagionally 1 space
         if ((OR - 1 === DR && OC - 1 === DC) ||
             (OR - 1 === DR && OC + 1 === DC) ||
             (OR + 1 === DR && OC - 1 === DC) ||
             (OR + 1 === DR && OC + 1 === DC)) {
+            return true;
+        } else if (OR + 2 === DR && OC + 2 === DC && this.board[OR + 1][OC + 1] !== null && this.board[OR + 1][OC + 1].symbol !== this.playerTurn) {
+            // Check jump conditions
+            return true;
+        } else if (OR + 2 === DR && OC - 2 === DC && this.board[OR + 1][OC - 1] !== null && this.board[OR + 1][OC - 1].symbol !== this.playerTurn) {
+            // Check jump conditions
+            return true;
+        } else if (OR - 2 === DR && OC + 2 === DC && this.board[OR - 1][OC + 1] !== null && this.board[OR - 1][OC + 1].symbol !== this.playerTurn) {
+            // Check jump conditions
+            return true;
+        } else if (OR - 2 === DR && OC - 2 === DC && this.board[OR - 1][OC - 1] !== null && this.board[OR - 1][OC - 1].symbol !== this.playerTurn) {
+            // Check jump conditions
             return true;
         } else {
             console.log("!!ERROR: Invalid move");
             return false;
         }
 
-        return false;
     }
 
     this.moveChecker = function(origin, destination) {
         // checks to see if the inputs are valid
-        let inputs = new this.ValidateInputs(origin, destination, this.board);
+        let inputs = new this.ValidateInputs(origin, destination, this.board); // is there a better way to do this as to avoid passing in board?
+        // Return to getPrompt if input was invalid
+        if (!inputs.valid) {
+            return;
+        }
         // checks to see if the moves are valid
-        let moves = new ValidateMoves(inputs, this.board);
-        return moves;
-        // makes move
+        if (!this.ValidateMoves(inputs)) {
+            // Return to getPrompt if move is invalid
+            return;
+        }
+        // Actually move the checker here
+
+
+        // Switch to the next player
+        if (this.playerTurn === 'R') {
+            this.playerTurn = 'B';
+        } else {
+            this.playerTurn = 'R';
+        }
     };
 
     // end of Game()   
