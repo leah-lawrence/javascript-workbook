@@ -21,11 +21,7 @@ const rl = readline.createInterface({
 
 
 function Checker(symbol) {
-
     this.symbol = symbol;
-    // Need a king state or symbol
-    // Need specific moving rules for when in kinged state (backwards king, not when not)
-
 }
 
 function Board() {
@@ -74,8 +70,7 @@ function Board() {
 function Game() {
 
     this.board = new Board();
-    // player turn
-    this.playerTurn = 'R';
+    this.playerTurn = 'R'; // player turn
 
     this.start = function() {
         this.board.createGrid();
@@ -151,8 +146,10 @@ function Game() {
     this.ValidateMoves = function(inputs) {
 
         // easy to read
-        let OR = inputs.originRow; let OC = inputs.originColumn; 
-        let DR = inputs.destinationRow; let DC = inputs.destinationColumn;
+        let OR = inputs.originRow;
+        let OC = inputs.originColumn;
+        let DR = inputs.destinationRow;
+        let DC = inputs.destinationColumn;
 
         // If (piece is king) { move piece };
         // checks to see if player is a king
@@ -191,17 +188,10 @@ function Game() {
             (OR + 1 === DR && OC - 1 === DC) ||
             (OR + 1 === DR && OC + 1 === DC)) {
             return true;
-        } else if (OR + 2 === DR && OC + 2 === DC && this.board[OR + 1][OC + 1] !== null && this.board[OR + 1][OC + 1].symbol !== this.playerTurn) {
-            // Check jump conditions
-            return true;
-        } else if (OR + 2 === DR && OC - 2 === DC && this.board[OR + 1][OC - 1] !== null && this.board[OR + 1][OC - 1].symbol !== this.playerTurn) {
-            // Check jump conditions
-            return true;
-        } else if (OR - 2 === DR && OC + 2 === DC && this.board[OR - 1][OC + 1] !== null && this.board[OR - 1][OC + 1].symbol !== this.playerTurn) {
-            // Check jump conditions
-            return true;
-        } else if (OR - 2 === DR && OC - 2 === DC && this.board[OR - 1][OC - 1] !== null && this.board[OR - 1][OC - 1].symbol !== this.playerTurn) {
-            // Check jump conditions
+        } else if ((OR - 2 === DR && OC - 2 === DC) ||
+            (OR - 2 === DR && OC + 2 === DC) ||
+            (OR + 2 === DR && OC - 2 === DC) ||
+            (OR + 2 === DR && OC + 2 === DC)) {
             return true;
         } else {
             console.log("!!ERROR: Invalid move");
@@ -225,15 +215,26 @@ function Game() {
     }
 
     this.removeOpponent = function(inputs) {
-        
-         // easy to read
-        let OR = inputs.originRow; let OC = inputs.originColumn; 
-        let DR = inputs.destinationRow; let DC = inputs.destinationColumn;
 
-        if ((OR - 1 === null && OC - 1 === null) ||
-            (OR - 1 === null && OC + 1 === null) ||
-            (OR + 1 === null && OC - 1 === null) ||
-            (OR + 1 === null && OC + 1 === null)) {
+        // easy to read
+        let OR = inputs.originRow;
+        let OC = inputs.originColumn;
+        let DR = inputs.destinationRow;
+        let DC = inputs.destinationColumn;
+
+        // remove red
+        if ((OR - 1 === 'R' && OC - 1 === 'R') ||
+            (OR - 1 === 'R' && OC + 1 === 'R') ||
+            (OR + 1 === 'R' && OC - 1 === 'R') ||
+            (OR + 1 === 'R' && OC + 1 === 'R')) {
+            console.log("amen");
+        }
+
+        // remove black
+        if ((OR - 1 === 'B' && OC - 1 === 'B') ||
+            (OR - 1 === 'B' && OC + 1 === 'B') ||
+            (OR + 1 === 'B' && OC - 1 === 'B') ||
+            (OR + 1 === 'B' && OC + 1 === 'B')) {
             console.log("amen");
         }
     }
