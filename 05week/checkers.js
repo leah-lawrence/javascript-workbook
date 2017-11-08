@@ -22,6 +22,7 @@ const rl = readline.createInterface({
 
 function Checker(symbol) {
     this.symbol = symbol;
+    this.king = false;
 }
 
 function Board() {
@@ -211,32 +212,6 @@ function Game() {
         // adds a checker piece to destination
         this.board.grid[inputs.destinationRow][inputs.destinationColumn] = new Checker(this.playerTurn);
         return;
-
-    }
-
-    this.removeOpponent = function(inputs) {
-
-        // easy to read
-        let OR = inputs.originRow;
-        let OC = inputs.originColumn;
-        let DR = inputs.destinationRow;
-        let DC = inputs.destinationColumn;
-
-        // remove red
-        if ((OR - 1 === 'R' && OC - 1 === 'R') ||
-            (OR - 1 === 'R' && OC + 1 === 'R') ||
-            (OR + 1 === 'R' && OC - 1 === 'R') ||
-            (OR + 1 === 'R' && OC + 1 === 'R')) {
-            console.log("amen");
-        }
-
-        // remove black
-        if ((OR - 1 === 'B' && OC - 1 === 'B') ||
-            (OR - 1 === 'B' && OC + 1 === 'B') ||
-            (OR + 1 === 'B' && OC - 1 === 'B') ||
-            (OR + 1 === 'B' && OC + 1 === 'B')) {
-            console.log("amen");
-        }
     }
 
     this.togglePlayer = function() {
