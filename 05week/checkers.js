@@ -1,14 +1,3 @@
-/******
-In class Notes
-
-Diagional move only
-Can jump an opponent
-Can capture an oponents piece, can get another turn
-King can move backwards and forwards
-Double jump, if jump can take another turn
-
-*******/
-
 'use strict';
 
 const assert = require('assert');
@@ -22,7 +11,6 @@ const rl = readline.createInterface({
 
 function Checker(symbol) {
     this.symbol = symbol;
-    this.king = false;
 }
 
 function Board() {
@@ -220,6 +208,22 @@ function Game() {
             this.playerTurn = 'B';
         } else {
             this.playerTurn = 'R';
+        }
+    }
+
+    this.removeOpponent = function(inputs) {
+
+        // easy to read
+        let OR = inputs.originRow;
+        let OC = inputs.originColumn;
+        let DR = inputs.destinationRow;
+        let DC = inputs.destinationColumn;
+
+        if (Math.abs(DR - OR) === 2) {
+            let killRow = DR - OR > 0 ? OR + 1 : DR + 1;
+            let killCol = DR - OC > 0 ? OC + 1 : DR + 1;
+            console.log('!! A checker was captured !!');
+            this.board.grid[killRow][killCol] = null;
         }
     }
 
