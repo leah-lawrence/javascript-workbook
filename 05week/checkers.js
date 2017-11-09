@@ -15,6 +15,7 @@ function Checker(symbol) {
 
 function Board() {
     this.grid = [];
+    this.checkers = [];
     // creates an 8x8 array, filled with null values
     this.createGrid = function() {
         // loop to create the 8 rows
@@ -73,6 +74,7 @@ function Game() {
                 if ((row + column) % 2 === 1) {
                     // Prints out R from class Checker 
                     this.board.grid[row][column] = new Checker('R');
+                    this.board.checkers.push(this.board.grid[row][column]);
                 }
             }
         }
@@ -85,6 +87,7 @@ function Game() {
                 if ((row + column) % 2 === 1) {
                     // prints out B from class Checker 
                     this.board.grid[row][column] = new Checker("B");
+                    this.board.checkers.push(this.board.grid[row][column]);
                 }
             }
         }
