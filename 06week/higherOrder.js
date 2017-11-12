@@ -9,14 +9,19 @@ function forEach(arr, callback) {
   }
 }
 
-//forEach(array, );
-
 function map(arr, callback) {
-    // Your code here
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++){
+      let element = arr[i];
+      let converted = callback(element);
+      result.push(converted);
+    }
+    return result;
 }
 
 function filter(arr, callback) {
-    // Your code here
+    // your code here
 }
 
 function some(arr, callback) {
