@@ -41,7 +41,18 @@ function filter(arr, callback) {
 }
 
 function some(arr, callback) {
-    // Your code here
+    // new counter
+    let count = 0;
+
+    // loop through array and filter element
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            count++; 
+        }; 
+    }
+
+    // return new array with filtered elements
+    return result;
 }
 
 function every(arr, callback) {
