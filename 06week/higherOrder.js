@@ -4,10 +4,16 @@ const assert = require('assert');
 
 
 function forEach(arr, callback) {
+    // new array with converted items
+    let result = [];
+
     // loop through entire length of array
     for (let i = 0; i < arr.length; i++) {
-        callback(arr[i]); // convert element value
+        result.push(callback(arr[i]));
     }
+
+    // return new array with converted elements
+    return result;
 }
 
 function map(arr, callback) {
@@ -16,9 +22,7 @@ function map(arr, callback) {
 
     // loop through array and convert element
     for (let i = 0; i < arr.length; i++) {
-        let element = arr[i];
-        let converted = callback(element); // convert element value
-        result.push(converted);
+        result.push(callback(arr[i]));
     }
 
     // return new array with mapped elements
@@ -32,31 +36,33 @@ function filter(arr, callback) {
     // loop through array and filter element
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] % 2 === 0) {
-            result.push(arr[i]); 
-        }; 
+            result.push(arr[i]);
+        };
     }
-
     // return new array with filtered elements
     return result;
 }
 
 function some(arr, callback) {
-    // new counter
-    let count = 0;
-
-    // loop through array and filter element
+    // loop through array and determine if true/false
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 === 0) {
-            count++; 
-        }; 
-    }
+        if (callback(arr[i])) {
+            return true;
+        }
+    };
 
-    // return new array with filtered elements
-    return result;
+    return false;
 }
 
 function every(arr, callback) {
-    // Your code here
+    // loop through array and determine if true/false
+    for (let i = 0; i < arr.length; i++) {
+        if (!callback(arr[i])) {
+            return false;
+        } 
+    };
+
+    return true;
 }
 
 if (typeof describe === 'function') {
