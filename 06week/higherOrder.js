@@ -4,24 +4,40 @@ const assert = require('assert');
 
 
 function forEach(arr, callback) {
+    // loop through entire length of array
     for (let i = 0; i < arr.length; i++) {
-    callback(arr[i]);
-  }
+        callback(arr[i]); // convert element value
+    }
 }
 
 function map(arr, callback) {
-    const result = [];
+    // new array with mapped elements
+    let result = [];
 
-    for (let i = 0; i < arr.length; i++){
-      let element = arr[i];
-      let converted = callback(element);
-      result.push(converted);
+    // loop through array and convert element
+    for (let i = 0; i < arr.length; i++) {
+        let element = arr[i];
+        let converted = callback(element); // convert element value
+        result.push(converted);
     }
+
+    // return new array with mapped elements
     return result;
 }
 
 function filter(arr, callback) {
-    // your code here
+    // new array with filtered elements
+    let result = [];
+
+    // loop through array and filter element
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            result.push(arr[i]); 
+        }; 
+    }
+
+    // return new array with filtered elements
+    return result;
 }
 
 function some(arr, callback) {
