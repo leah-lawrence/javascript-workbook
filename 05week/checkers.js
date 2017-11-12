@@ -151,13 +151,13 @@ function Game() {
 
         // checks to see if player made a move
         if (this.board.grid[OR][OC] === null) {
-            console.log("!!ERROR: You did not pick a checker piece");
+            console.log("1) should be able to jump over and kill another checker");
             return false;
         }
 
         // checks to see if player moved their piece
         if (this.board.grid[OR][OC].symbol !== this.playerTurn) {
-            console.log("!!ERROR: You must select your own piece");
+            console.log("should move a checker");
             return false;
         }
 
@@ -227,6 +227,7 @@ function Game() {
             let killCol = DR - OC > 0 ? OC + 1 : DR + 1;
             console.log('!! A checker was captured !!');
             this.board.grid[killRow][killCol] = null;
+            // this.board.checkers.split(this.board.grid[row][column]);
         }
     }
 
