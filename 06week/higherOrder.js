@@ -50,7 +50,7 @@ function some(arr, callback) {
             return true;
         }
     };
-
+    
     return false;
 }
 
