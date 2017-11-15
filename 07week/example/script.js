@@ -16,16 +16,20 @@ class List extends React.Component {
       console.log("the event object", event);
       console.log("the element clicked", event.target);
       console.log("The value is ", event.target.getAttribute("data-name"));
+      
       let task = event.target.getAttribute("data-name");
       let newCounter = this.state.counter;
+      
       if (task === 'increment'){
         newCounter=newCounter+1
       } else if (task === 'decrement'){
         newCounter = newCounter-1
       }
+
       const newState = {
         counter: newCounter
       }
+
       this.setState(newState);
     }
 
