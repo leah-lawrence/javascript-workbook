@@ -7,7 +7,7 @@ class TicTacToe extends React.Component {
                 turn: 'X'
             }
             this.grid = [
-                ['X', null, null],
+                [null, null, null],
                 [null, 'O', null],
                 [null, null, null]
             ];
@@ -16,20 +16,19 @@ class TicTacToe extends React.Component {
 
         takePlayerTurn(event) {
             // console.log("hello world");
-            console.log(this.state.turn);
+            // console.log(this.state.turn);
             // console.log(this.grid);
 
             let cellInput = event.target.getAttribute("data-cell");
             let playerTurn = this.state.turn;
             let gameBoard = this.grid;
 
-
-            // push playerTurn to the array element (onClick)
-            for (let i = 0; i < gameBoard.length; i++) {
-                if (cellInput === "i") {
-                    // gameBoard[0][0].push(playerTurn);
+            push playerTurn to the array element (onClick)
+            function printToBoard() {
+                if (cellInput === "0") {
+                    gameBoard[0][0].push(playerTurn);
                     console.log(playerTurn);
-                };
+                }
             }
 
 
