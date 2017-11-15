@@ -23,8 +23,20 @@ takePlayerTurn(event) {
  let playerTurn = this.state.turn;
  let gameBoard = this.grid; 
 
+ if (cellInput === "0") {
+    // gameBoard[0][0].push(playerTurn);
+    console.log("cell input 1 works");
+ };
  // push playerTurn to the array element (onClick)
- gameBoard[row][column].push(playerTurn);
+ // cellInput==="0" ? gameBoard[0][0].push(playerTurn)
+ // cellInput==="1" ? gameBoard[0][1].push(playerTurn)
+ // cellInput==="2" ? gameBoard[0][2].push(playerTurn)
+ // cellInput==="3" ? gameBoard[1][0].push(playerTurn)
+ // cellInput==="4" ? gameBoard[1][1].push(playerTurn)
+ // cellInput==="5" ? gameBoard[1][2].push(playerTurn)
+ // cellInput==="6" ? gameBoard[2][0].push(playerTurn)
+ // cellInput==="7" ? gameBoard[2][1].push(playerTurn)
+ // cellInput==="8" ? gameBoard[2][2].push(playerTurn)
 
 
  // // switch players
