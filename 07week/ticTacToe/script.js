@@ -15,14 +15,21 @@ class TicTacToe extends React.Component {
   }
 
 takePlayerTurn() {
-    let playerTurn = this.state.turn;
-    //playerTurn === 'X' ? playerTurn = 'O' : playerTurn = 'X';
-    if(playerTurn === 'X'){
-      console.log('X');
-    }else {
-      console.log('0')
-    }
     //console.log("hello world");
+    //console.log("");
+
+    let playerTurn = this.state.turn;
+    let newTurn = this.state.turn;
+
+    // print player turn in console onClick
+    if(playerTurn === 'X'){
+      console.log(playerTurn);
+    }else {
+      console.log(playerTurn)
+    }
+
+    // change players
+    playerTurn === 'X' ? playerTurn = 'O' : playerTurn = 'X';
 }
 
   render() {
