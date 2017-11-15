@@ -30,9 +30,40 @@ class TicTacToe extends React.Component {
             if (cellInput === "0") {
                 gameBoard[0][0] = (playerTurn);
                 console.log(playerTurn);
-                //console.log(gameBoard);
-            }
-            
+                console.log(gameBoard);
+            } else if (cellInput === "1") {
+                gameBoard[0][1] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "2") {
+                gameBoard[0][2] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "3") {
+                gameBoard[1][0] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "4") {
+                gameBoard[1][1] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "5") {
+                gameBoard[1][2] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "6") {
+                gameBoard[2][0] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "7") {
+                gameBoard[2][1] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } else if (cellInput === "8") {
+                gameBoard[2][2] = (playerTurn);
+                console.log(playerTurn);
+                console.log(gameBoard);
+            } 
 
             // switch players
             if (playerTurn === 'X') {
