@@ -6,49 +6,59 @@ class TicTacToe extends React.Component {
     this.state = {
       turn: 'X'
     }
-    this.board = [
-      [null,null,null],
-      [null,null,null],
+    this.grid = [
+      ['X',null,null],
+      [null,'O',null],
       [null,null,null]
     ];
     this.takePlayerTurn = this.takePlayerTurn.bind(this);
   }
 
-takePlayerTurn() {
-    //console.log("hello world");
-    //console.log("");
+takePlayerTurn(event) {
+ //console.log("hello world");
+ console.log(this.state.turn);
+ console.log(this.grid);
 
-    let playerTurn = this.state.turn;
-    let newTurn = this.state.turn;
+ let cellInput = event.target.getAttribute("data-cell");
+ let playerTurn = this.state.turn;
+ let gameBoard = this.grid;
 
-    // print player turn in console onClick
-    if(playerTurn === 'X'){
-      console.log(playerTurn);
-    }else {
-      console.log(playerTurn)
-    }
+ // push player turn to the array
+ gameBoard.forEach(function() {
+  //console.log("for each function works");
+  //this.grid.push(playerTurn);
+ });
 
-    // change players
-    playerTurn === 'X' ? playerTurn = 'O' : playerTurn = 'X';
+ // switch players
+ // if (playerTurn === 'X'){
+ //   console.log(playerTurn);
+ //   nextTurn = 'O'
+ // } else {
+ //   console.log(playerTurn);
+ //   nextTurn = 'X'
+ // }
+ // const changePlayer = {
+ //   turn: nextTurn
+ // }
+ // this.setState(nextTurn);
 }
-
   render() {
     return (
       <div>
         <div className="row">
-          <div onClick={this.takePlayerTurn} data-cell="0"></div>
-          <div onClick={this.takePlayerTurn} data-cell="1"></div>
-          <div onClick={this.takePlayerTurn} data-cell="2"></div>
+          <div onClick={this.takePlayerTurn} data-cell="0">{this.grid[0][0]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="1">{this.grid[0][1]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="2">{this.grid[0][2]}</div>
         </div>
         <div className="row">
-          <div onClick={this.takePlayerTurn} data-cell="3"></div>
-          <div onClick={this.takePlayerTurn} data-cell="4"></div>
-          <div onClick={this.takePlayerTurn} data-cell="5"></div>
+          <div onClick={this.takePlayerTurn} data-cell="3">{this.grid[1][0]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="4">{this.grid[1][1]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="5">{this.grid[1][2]}</div>
         </div>
         <div className="row">
-          <div onClick={this.takePlayerTurn} data-cell="6"></div>
-          <div onClick={this.takePlayerTurn} data-cell="7"></div>
-          <div onClick={this.takePlayerTurn} data-cell="8"></div>
+          <div onClick={this.takePlayerTurn} data-cell="6">{this.grid[2][0]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="7">{this.grid[2][1]}</div>
+          <div onClick={this.takePlayerTurn} data-cell="8">{this.grid[2][2]}</div>
         </div>
       </div>
     );

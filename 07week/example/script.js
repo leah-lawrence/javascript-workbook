@@ -25,14 +25,12 @@ class List extends React.Component {
       } else if (task === 'decrement'){
         newCounter = newCounter-1
       }
-
       const newState = {
         counter: newCounter
       }
 
       this.setState(newState);
     }
-
 
     // incrementCounter(event) {
     //   const newState = {
