@@ -15,21 +15,20 @@ class TicTacToe extends React.Component {
   }
 
 takePlayerTurn(event) {
- //console.log("hello world");
- console.log(this.state.turn);
- console.log(this.grid);
+ // console.log("hello world");
+  console.log(this.state.turn);
+ // console.log(this.grid);
 
  let cellInput = event.target.getAttribute("data-cell");
  let playerTurn = this.state.turn;
- let gameBoard = this.grid;
+ let gameBoard = this.grid; 
 
- // push player turn to the array
- gameBoard.forEach(function() {
-  //console.log("for each function works");
-  //this.grid.push(playerTurn);
- });
+ // push playerTurn to the array element (onClick)
+ gameBoard[row][column].push(playerTurn);
 
- // switch players
+
+ // // switch players
+ // let nextTurn = this.state.turn;
  // if (playerTurn === 'X'){
  //   console.log(playerTurn);
  //   nextTurn = 'O'
@@ -41,6 +40,8 @@ takePlayerTurn(event) {
  //   turn: nextTurn
  // }
  // this.setState(nextTurn);
+
+
 }
   render() {
     return (
