@@ -27,22 +27,24 @@ class TicTacToe extends React.Component {
             //console.log(cellInput);
 
             // push playerTurn to the array element (onClick)
-            if (cellInput === 0) {
-              //gameBoard[0][0].push(playerTurn);
-              console.log(playerTurn);
-              //console.log(gameBoard);
-            }
-  
+            (function() {
+                if (cellInput === 0) {
+                    //gameBoard[0][0].push(playerTurn);
+                    console.log(playerTurn);
+                    //console.log(gameBoard);
+                }
+            })();
+
             // switch players
             if (playerTurn === 'X') {
                 console.log(playerTurn, cellInput);
                 newState = {
-                  turn: 'O'
+                  playerTurn: 'O'
                 }
             } else {
                 console.log(playerTurn, cellInput);
                 newState = {
-                  turn: 'X'
+                  playerTurn: 'X'
                 }
             }
             // const changePlayer = {
