@@ -1,60 +1,55 @@
 'use strict';
 
 class TicTacToe extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      turn: 'X'
-    }
-    this.grid = [
-      ['X',null,null],
-      [null,'O',null],
-      [null,null,null]
-    ];
-    this.takePlayerTurn = this.takePlayerTurn.bind(this);
-  }
+        constructor(props) {
+            super(props);
+            this.state = {
+                turn: 'X'
+            }
+            this.grid = [
+                ['X', null, null],
+                [null, 'O', null],
+                [null, null, null]
+            ];
+            this.takePlayerTurn = this.takePlayerTurn.bind(this);
+        }
 
-takePlayerTurn(event) {
- // console.log("hello world");
-  console.log(this.state.turn);
- // console.log(this.grid);
+        takePlayerTurn(event) {
+            // console.log("hello world");
+            console.log(this.state.turn);
+            // console.log(this.grid);
 
- let cellInput = event.target.getAttribute("data-cell");
- let playerTurn = this.state.turn;
- let gameBoard = this.grid; 
-
- if (cellInput === "0") {
-    // gameBoard[0][0].push(playerTurn);
-    console.log("cell input 1 works");
- };
- // push playerTurn to the array element (onClick)
- // cellInput==="0" ? gameBoard[0][0].push(playerTurn)
- // cellInput==="1" ? gameBoard[0][1].push(playerTurn)
- // cellInput==="2" ? gameBoard[0][2].push(playerTurn)
- // cellInput==="3" ? gameBoard[1][0].push(playerTurn)
- // cellInput==="4" ? gameBoard[1][1].push(playerTurn)
- // cellInput==="5" ? gameBoard[1][2].push(playerTurn)
- // cellInput==="6" ? gameBoard[2][0].push(playerTurn)
- // cellInput==="7" ? gameBoard[2][1].push(playerTurn)
- // cellInput==="8" ? gameBoard[2][2].push(playerTurn)
+            let cellInput = event.target.getAttribute("data-cell");
+            let playerTurn = this.state.turn;
+            let gameBoard = this.grid;
 
 
- // // switch players
- // let nextTurn = this.state.turn;
- // if (playerTurn === 'X'){
- //   console.log(playerTurn);
- //   nextTurn = 'O'
- // } else {
- //   console.log(playerTurn);
- //   nextTurn = 'X'
- // }
- // const changePlayer = {
- //   turn: nextTurn
- // }
- // this.setState(nextTurn);
+            // push playerTurn to the array element (onClick)
+            for (let i = 0; i < gameBoard.length; i++) {
+                if (cellInput === "i") {
+                    // gameBoard[0][0].push(playerTurn);
+                    console.log(playerTurn);
+                };
+            }
 
 
-}
+            // // switch players
+            // let nextTurn = this.state.turn;
+            // if (playerTurn === 'X'){
+            //   console.log(playerTurn);
+            //   nextTurn = 'O'
+            // } else {
+            //   console.log(playerTurn);
+            //   nextTurn = 'X'
+            // }
+            // const changePlayer = {
+            //   turn: nextTurn
+            // }
+            // this.setState(nextTurn);
+
+
+        }
+
   render() {
     return (
       <div>
