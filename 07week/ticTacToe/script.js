@@ -7,7 +7,7 @@ class TicTacToe extends React.Component {
                 turn: 'X',
                 grid: [
                   [null, null, null],
-                  [null, 'O', null],
+                  [null, null, null],
                   [null, null, null]
               ]
             }
