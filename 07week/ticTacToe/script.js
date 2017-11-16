@@ -69,16 +69,16 @@ class TicTacToe extends React.Component {
             if (playerTurn === 'X') {
                 //console.log(playerTurn, cellInput);
                 newState = {
-                  turn: 'O'
+                  turn: 'O',
                 }
             } else {
                 //console.log(playerTurn, cellInput);
                 newState = {
-                  turn: 'X'
+                  turn: 'X',
                 }
             }
             const changePlayer = {
-                turn: playerTurn
+                turn: playerTurn,
             }
             this.setState(newState);
         }
