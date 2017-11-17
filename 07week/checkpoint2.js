@@ -57,3 +57,18 @@ let userArray = [
             }
         },
 ];
+
+// Convert object to a string using the map function
+const mapObject = userArray.map((x) => {
+   // console.log(x.customer.customerName); 
+
+   // assign each attribute a name
+   let name = x.customer.customerName;
+   let price = x.customer.productPrice;
+   let item = x.customer.product;
+   let city = x.customer.customerCity;
+   let state = x.customer.customerState;
+
+   // print string
+   console.log(name + " paid " + price + " for a " + item + " in " + city + ", " + state + ".");
+});
