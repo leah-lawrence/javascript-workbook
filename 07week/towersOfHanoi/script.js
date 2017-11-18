@@ -15,22 +15,26 @@ class TowersOfHanoi extends React.Component {
   }
 
   playerTurn(event){
-      console.log("playerTurn() ✓");
+      //console.log("playerTurn() ✓");
 
       const board = this.state.board;
-      const stack = event.target.getAttribute("data-stack"); // selected stack
-      //console.log("selected stack: " + stack);
-      const store = []; //create an empty object to hold stack and block variables
-      //console.log(store);
+      const block = this.state.block;
+      const stack = event.target.getAttribute("data-stack"); 
+      const store = [];
 
       // add disk to stack - onClick
-      if (!this.state.block) { 
-        const move = board[stack].pop(); 
-        store.push(move);
-      } else if (newStack.length === 0 || this.state.block < board[stack][board[stack].length-1]) {
-        newStack.push(this.state.block); //place the block on stack
-        store['block'] = null; //reset block value
+      if (!this.state.block) { // if the stack is not empty
+        const move = board[stack].pop(); // take last element in selected board's array
+        store.push(move); // move to store
+
+        // testing
+        console.log(store);
+        console.log(this.state.board);
       }
+      // } else if (newStack.length === 0 || this.state.block < board[stack][board[stack].length-1]) {
+      //   newStack.push(this.state.block); //place the block on stack
+      //   store['block'] = null; //reset block value
+      // }
       this.setState(store); 
   }
 
