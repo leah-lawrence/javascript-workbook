@@ -4,43 +4,37 @@ class TowersOfHanoi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        selectedBlock: null,
-        selectedDisk: null,
+        selectedplayerTurn: null,
         board: [
           [],
           [],
           []
         ]
     }
-    this.disk = this.disk.bind(this);
+    this.playerTurn = this.playerTurn.bind(this);
   }
-  // onClick, select data-block
-  disk(event){
-      console.log("✓ disk()");
+  // onClick, select data-block and put playerTurn in a data-stack
+  playerTurn(event){
+      console.log("✓ playerTurn()");
       // console.log(this.state.selectedBlock);
       // console.log(this.state.grid);
 
 
   }
 
-   // onClick, put disk in a data-stack
-  stack(event){
-    console.log("✓ stack()");
-
-  }
 
   render() {
     return (
       <div>
-        <div data-stack="1" onClick={this.stack}>
-          <div data-block="100" onClick={this.disk}></div>
-          <div data-block="75"  onClick={this.disk}></div>
-          <div data-block="50"  onClick={this.disk}></div>
-          <div data-block="25"  onClick={this.disk}></div>
+        <div data-stack="1" onClick={this.playerTurn}>
+          <div data-block="100"></div>
+          <div data-block="75" ></div>
+          <div data-block="50" ></div>
+          <div data-block="25" ></div>
         </div>
-        <div data-stack="2" onClick={this.stack}>
+        <div data-stack="2" onClick={this.playerTurn}>
         </div>
-        <div data-stack="3" onClick={this.stack}>
+        <div data-stack="3" onClick={this.playerTurn}>
         </div>
       </div>
     );
