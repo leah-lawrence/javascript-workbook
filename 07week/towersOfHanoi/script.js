@@ -19,8 +19,8 @@ class TowersOfHanoi extends React.Component {
 
       const board = this.state.board; 
       const stack = event.target.getAttribute("data-stack"); 
-      const selStack = board[stack]
-      const store = [];
+      const selStack = board[stack] // selected stack ie this.state.board[1]
+      const store = {}; // holds a value
 
       // add disk to stack - onCli£ck
       if (!this.state.block) { // if the stack is not empty
@@ -31,11 +31,14 @@ class TowersOfHanoi extends React.Component {
         console.log(store); // item in store
         console.log(move); // item being moved
         console.log(this.state.board); // state of board
+
+
+      } else (store.length === 0) {
+        console.log("selected stack length is 0");
+        // store.push(this.state.block); // place the block on stack
+        // store['block'] = null; // reset
       }
-      // } else if (store.length === 0 ||  this.state.block < this.state[stack][this.state[stack].length-1]) {
-      //   store.push(this.state.block); //place the block on stack
-      //   //store['block'] = null; //reset block value
-      
+
       this.setState(store); 
   }
 
