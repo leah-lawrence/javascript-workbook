@@ -28,7 +28,7 @@ class TowersOfHanoi extends React.Component {
         store['move'] = move; // move to store
         console.log(this.state); // print the state of the object in console
         console.log("if runs"); // console test
-      } else if (selStack.length === 0 || selStack[selStack.length-1] < block) {
+      } else if (selStack.length === 0 || selStack[selStack.length-1] > block) {
         selStack.push(this.state.block); // place the block on stack
         store['block'] = null; // reset
         console.log("else if runs") // console test
