@@ -6,8 +6,8 @@ class TowersOfHanoi extends React.Component {
     this.state = { 
       block: null, 
       board: {
-         1: [100,75,50,25],
-         2: [],
+         1: [100,75],
+         2: [50,25],
          3: []
         }
     };
@@ -15,31 +15,27 @@ class TowersOfHanoi extends React.Component {
   }
 
   playerTurn(event){
-      //console.log("playerTurn() ✓");
-
       const board = this.state.board; 
+      const block = this.state.block;
       const stack = event.target.getAttribute("data-stack"); 
       const selStack = board[stack] // selected stack ie this.state.board[1]
-      const store = {}; // holds a value
+      const store = {};
 
       // add disk to stack - onCli£ck
-      if (!this.state.block) { // if the stack is not empty
+      if (!block) { // if the stack has a block
+        console.log("if runs");
         const move = selStack.pop(); // take last element in selected board's array
-        store.push(move); // move to store
-
-        // testing
-        console.log(store); // item in store
-        console.log(move); // item being moved
-        console.log(this.state.board); // state of board
-
-
-      } else (store.length === 0) {
-        console.log("selected stack length is 0");
+        this.state.block = move; // move to this.state.block
+        store['move'] = move; // move to store
+        console.log(this.state); // print the staet of the object in console
+      } else if (selStack.length === 0 || selStack[selStack.length-1] < block) {
+        console.log("else if runs")
+        store['block'] = null;
         // store.push(this.state.block); // place the block on stack
         // store['block'] = null; // reset
       }
-
-      this.setState(store); 
+      
+      this.setState(store);
   }
 
   render() {
