@@ -23,18 +23,17 @@ class TowersOfHanoi extends React.Component {
 
       // add disk to stack - onCli£ck
       if (!block) { // if the stack has a block
-        console.log("if runs");
         const move = selStack.pop(); // take last element in selected board's array
         this.state.block = move; // move to this.state.block
         store['move'] = move; // move to store
-        console.log(this.state); // print the staet of the object in console
+        console.log(this.state); // print the state of the object in console
+        console.log("if runs"); // console test
       } else if (selStack.length === 0 || selStack[selStack.length-1] < block) {
-        console.log("else if runs")
-        store['block'] = null;
-        // store.push(this.state.block); // place the block on stack
-        // store['block'] = null; // reset
+        selStack.push(this.state.block); // place the block on stack
+        store['block'] = null; // reset
+        console.log("else if runs") // console test
       }
-      
+
       this.setState(store);
   }
 
