@@ -41,15 +41,15 @@ class TowersOfHanoi extends React.Component {
 
   const board = this.state.board; 
 
-  // reassign <div data-stack="1">
+  // assign array to div
   const block1 = board[1].map((block) => {
     return (<div data-block={block}></div>);
   });
-  // reassign <div data-stack="2">
+  // assign array to div
   const block2 = board[2].map((block) => {
     return (<div data-block={block}></div>);
   });
-  // reassign <div data-stack="3">
+  // assign array to div
   const block3 = board[3].map((block) => {
     return (<div data-block={block}></div>);
   });
