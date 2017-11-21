@@ -19,14 +19,14 @@ class TowersOfHanoi extends React.Component {
       const block = this.state.block;
       const stack = event.target.getAttribute("data-stack"); 
       const selStack = board[stack] // selected stack ie this.state.board[1]
-      const store = {};
+      const store = []; // 
 
       // add disk to stack - onClick
       if (!block) { // if the stack has a block
         const move = selStack.pop(); // take last element in selected board's array
         this.state.block = move; // move to this.state.block
-        store['move'] = move; // move to store
-        // console.log(this.state); // print the state of the object in console
+        store.push(move); // move to store
+        // console.log(this.state); // console object
         // console.log("if runs"); // console test
       } else if (selStack.length === 0 || selStack[selStack.length-1] > block) { // if nothing in stack, or last item in stack is less than stored block
         selStack.push(this.state.block); // place the block on stack
@@ -34,21 +34,22 @@ class TowersOfHanoi extends React.Component {
         // console.log("else if runs") // console test
       }
       this.setState(store); // change 
-      console.log(this.state);
+      console.log(this.state); // console object
   }
 
   render() {
 
-  const board = this.state.board;
+  const board = this.state.board; 
 
-  const block1 = board[1].map((block) => { 
+  // reassign <div data-stack="1">
+  const block1 = board[1].map((block) => {
     return (<div data-block={block}></div>);
   });
-
+  // reassign <div data-stack="2">
   const block2 = board[2].map((block) => {
     return (<div data-block={block}></div>);
   });
-
+  // reassign <div data-stack="3">
   const block3 = board[3].map((block) => {
     return (<div data-block={block}></div>);
   });
