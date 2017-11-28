@@ -6,12 +6,13 @@ class TowersOfHanoi extends React.Component {
     this.state = { 
       block: null, 
       board: {
-        1: [100,75, 50,25],
+        1: [25],
         2: [],
-        3: []
+        3: [100,75,50]
       }
     };
     this.playerTurn = this.playerTurn.bind(this);
+    this.win = this.win.bind(this);
   }
   // move disks on board
   playerTurn(event){
@@ -19,7 +20,7 @@ class TowersOfHanoi extends React.Component {
       const block = this.state.block;
       const stack = event.target.getAttribute("data-stack"); 
       const selStack = board[stack] // selected stack ie this.state.board[1]
-      const store = []; // 
+      const store = []; // store items
 
       // add disk to stack - onClick
       if (!block) { // if the stack has a block
@@ -35,6 +36,18 @@ class TowersOfHanoi extends React.Component {
       }
       this.setState(store); // change 
       console.log(this.state); // console object
+  }
+
+  win(event){
+    const board = this.state.board; 
+
+    if (board[3][0] === 100 &&
+        board[3][1] === 75  && 
+        board[3][2] === 50  &&
+        board[3][3] === 25) {
+        console.log("win works");
+    } 
+
   }
 
   render() {
