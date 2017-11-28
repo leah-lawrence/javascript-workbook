@@ -50,8 +50,8 @@ class List extends React.Component {
         return (
          <div>
          <h1 onClick={this.incrementCounter}> The counter is now {this.state.counter} </h1>
-         <h2 data-name="increment" onClick={this.changeCounter}> Increment </h2>
-         <h2 data-name="decrement" onClick={this.changeCounter}> Decrement </h2>
+         <button type="button" className="btn btn-primary" data-name="increment" onClick={this.changeCounter}> Increment </button>
+         <button type="button" className="btn btn-primary" data-name="decrement" onClick={this.changeCounter}> Decrement </button>
          </div>
          // <div>
          // <h1 data-name="increment" onClick={this.incrementCounter}> The counter is now {this.state.counter} </h1>
