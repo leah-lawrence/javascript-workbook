@@ -12,7 +12,6 @@ class TowersOfHanoi extends React.Component {
       }
     };
     this.playerTurn = this.playerTurn.bind(this);
-    this.win = this.win.bind(this);
   }
   // move disks on board
   playerTurn(event){
@@ -34,19 +33,23 @@ class TowersOfHanoi extends React.Component {
         this.state.block = null; // reset
         // console.log("else if runs") // console test
       }
-      this.setState(store); // change 
-      console.log(this.state); // console object
+
+      this.setState(store); // change state
+      console.log(this.state); // print state in console
   }
 
-  win(event){
-    const board = this.state.board; 
+  // returns win alert
+  drawWinningDiv(){
+    const board = this.state.board;
+    let winDiv = <div></div>
 
-    if (board[3][0] === 100 &&
-        board[3][1] === 75  && 
-        board[3][2] === 50  &&
-        board[3][3] === 25) {
+    // check to see if player won
+    if (board[3][0] === 100 && board[3][1] === 75  && 
+        board[3][2] === 50  && board[3][3] === 25) {
+        winDiv = <div className="alert alert-success" role="alert">You Win! <a href="." className="alert-link"> Play Again </a></div>
         console.log("win works");
     } 
+    return winDiv;
 
   }
 
@@ -74,6 +77,11 @@ class TowersOfHanoi extends React.Component {
         <div className="col-sm" data-stack="2" onClick={this.playerTurn}>{block2}</div>
         <div className="col-sm" data-stack="3" onClick={this.playerTurn}>{block3}</div>
         </div>
+
+        <a href="." className="badge badge-dark"> Reset Game </a>
+        <br/> <br/>
+        <div>{this.drawWinningDiv()}</div>
+
       </div>
     );
   }
