@@ -55,10 +55,12 @@ class TowersOfHanoi extends React.Component {
   });
 
     return (
-      <div>
-        <div data-stack="1" onClick={this.playerTurn}>{block1}</div>
-        <div data-stack="2" onClick={this.playerTurn}>{block2}</div>
-        <div data-stack="3" onClick={this.playerTurn}>{block3}</div>
+      <div className="container">
+        <div className="row">
+        <div className="col-sm" data-stack="1" onClick={this.playerTurn}>{block1}</div>
+        <div className="col-sm" data-stack="2" onClick={this.playerTurn}>{block2}</div>
+        <div className="col-sm" data-stack="3" onClick={this.playerTurn}>{block3}</div>
+        </div>
       </div>
     );
   }
