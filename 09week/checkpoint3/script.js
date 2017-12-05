@@ -6,7 +6,7 @@ class DataComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			apiData: []
+			exchangeRates: []
 		}
 	}
 
@@ -15,21 +15,25 @@ class DataComponent extends React.Component {
 		const store = []
 		// API Information
 		const url = `https://blockchain.info/ticker`; 
+			// api status check
 			console.log("Fetch Object", URL); // test url in console
 			const options = {
 				method: 'GET',
 				headers: {'content-type': 'application/json'}
 			}
 		// Call API and store information in DataComponent's state
-		fetch(url, options).then((result) => {
-		return result.json();
-		}).then((response) => {			
-			store.push(response); // send information to storage
-			if(true){ 
-				this.setState({ 
-					apiData: store // set state
-				})
-			}
+		fetch(url, options)
+		.then((result) => {
+			return result.json();
+		})
+		.then((data) => {		
+			// api status check
+            console.log("The data is ", data); 
+            // store data
+			store.push(data); 
+			this.setState({ 
+				exchangeRates: store // set state
+			})
 		});
 	}
 
