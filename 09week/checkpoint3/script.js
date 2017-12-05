@@ -11,11 +11,11 @@ class DataComponent extends React.Component {
 
 	componentWillMount(){
 		// store state changes
-		const stories = []
+		const store = []
 		// create list 
 		for (let i=1; i<11; i++) {
-			const url = `https://hacker-news.firebaseio.com/v0/item/${i}.json?print=pretty `; // Hacker News API
-			console.log("Fetch Object", URL); // show fetch object in browser
+			const url = `https://blockchain.info/unconfirmed-transactions?format=json`; // Hacker News API
+			console.log("Fetch Object", URL); // test url in console
 			const options = {
 				method: 'GET',
 				headers: {
@@ -26,10 +26,10 @@ class DataComponent extends React.Component {
 			fetch(url, options).then((result) => {
 			return result.json();
 			}).then((response) => {			
-				stories.push(response); // send information to storage
-				if(stories.length === 10){ 
+				store.push(response); // send information to storage
+				if(store.length === 10){ 
 					this.setState({ 
-						list: stories // set state
+						list: store // set state
 					})
 				}
 			});
