@@ -14,7 +14,7 @@ class Hacker extends React.Component {
 		// create list 
 		for (let i=1; i<11; i++) {
 			const url = `https://hacker-news.firebaseio.com/v0/item/${i}.json?print=pretty `; // Hacker News API
-			console.log("Fetch Object", URL);
+			console.log("Fetch Object", URL); // show fetch object in browser
 			const options = {
 				method: 'GET',
 				headers: {
