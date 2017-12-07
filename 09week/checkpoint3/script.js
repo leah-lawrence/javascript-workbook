@@ -2,48 +2,60 @@
 
 // API Website https://blockchain.info/api/exchange_rates_api
 
-class DataComponent extends React.Component {
+class BitcoinComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			exchangeRates: []
+			apiData: []
 		}
 	}
 
 	componentWillMount(){
-		// Store Data
-		const store = []
+		// Data Storage Array
+		//const store = []
 		// API Information
 		const url = `https://blockchain.info/ticker`; 
-			// api status check
-			console.log("Fetch Object", URL); // test url in console
+			// show the url in the console
+			console.log("FETCH OBJECT: ", URL); 
+			// define options
 			const options = {
 				method: 'GET',
 				headers: {'content-type': 'application/json'}
 			}
-		// Call API and store information in DataComponent's state
+		// Call API data
 		fetch(url, options)
-		.then((result) => {
-			return result.json();
+		.then((response) => {
+			// show the response in the console
+            console.log("RESPONSE: ", response); 
+            // return the api data
+			return response.json();
 		})
+		// Store data
 		.then((data) => {		
-			// api status check
-            console.log("The data is ", data); 
+			// show the data in console
+            console.log("DATA: ", data); 
             // store data
-			store.push(data); 
-			this.setState({ 
-				exchangeRates: store // set state
-			})
+			//store.push(data); 
+			this.setState({apiData:data})
+			// console check object state
+			const objectLog = this.state.apiData;
+			const propertyLog = this.state.apiData['USD']['buy'];
+			console.log("NEW STATE: ", objectLog);
+			console.log("PROPERTY: " + propertyLog);
 		});
 	}
 
 	render(){
+
 		return(
 			<div> 
 				<h1> hello </h1>
+				// this.state.apiData.map((value) => {
+				// 	return <p>{value}</p> 
+				// });
 			</div>
 		)
 	}
 }
 
-ReactDOM.render(<DataComponent />, document.getElementById('reactComponent'));
+ReactDOM.render(<BitcoinComponent />, document.getElementById('bitcoin'));
