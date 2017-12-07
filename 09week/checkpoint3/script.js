@@ -47,12 +47,19 @@ class BitcoinComponent extends React.Component {
 
 	render(){
 
+		// const USDbuy = this.state.apiData.USD.buy; // reference property
+		// const USD = this.state.apiData.USD; // reference USD and all its properties
+		// const allCurrencies = this.state.apiData // list all currencies
+
+		if (Object.keys(this.state.apiData).length) {
+			// const exchangeData = this.state.apiData.map((item, index) => {
+			// 	return <p>{value}</p> 
+			// });
+		}
+
 		return(
 			<div> 
 				<h1> hello </h1>
-				// this.state.apiData.map((value) => {
-				// 	return <p>{value}</p> 
-				// });
 			</div>
 		)
 	}
