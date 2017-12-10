@@ -60,6 +60,7 @@ class BitcoinComponent extends React.Component {
 		return(
 			<div> 
 				<h1> hello </h1>
+				<button type="button" className="btn btn-primary">USD</button>
 			</div>
 		)
 	}
