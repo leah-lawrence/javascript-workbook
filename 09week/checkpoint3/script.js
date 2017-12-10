@@ -8,6 +8,7 @@ class BitcoinComponent extends React.Component {
 		this.state = {
 			apiData: []
 		}
+		this.displayData = this.displayData.bind(this);
 	}
 
 	componentWillMount(){
@@ -41,8 +42,12 @@ class BitcoinComponent extends React.Component {
 			const objectLog = this.state.apiData;
 			const propertyLog = this.state.apiData['USD']['buy'];
 			console.log("NEW STATE: ", objectLog);
-			console.log("PROPERTY: " + propertyLog);
+			console.log("PROPERTY: ", propertyLog);
 		});
+	}
+
+	displayData() {
+		console.log("!!ONCLICK WORKS")
 	}
 
 	render(){
@@ -60,7 +65,7 @@ class BitcoinComponent extends React.Component {
 		return(
 			<div> 
 				<h1> hello </h1>
-				<button type="button" className="btn btn-primary">USD</button>
+				<button type="button" className="btn btn-primary" onClick={this.displayData}>USD</button>
 			</div>
 		)
 	}
