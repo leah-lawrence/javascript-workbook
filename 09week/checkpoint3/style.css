@@ -1,7 +1,33 @@
 body {
-    background-color: white;
+ 	height: 100%;
+ 	margin: 0px;
+ 	padding: 0px;
+/*    background-image: url("http://rs724.pbsrc.com/albums/ww247/ccj5100/Bitcoin/bitcoin-rotate_zps0fswyhns.gif~c200");*/
+    background-color: gold;
+}
+
+.container {
+	align-content: center;
+	align-items: center;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	width: 900px;
+	padding: 4em;
+}
+
+nav {
+
+}
+
+.displayAPIdata p {
+		display: inline;
+		padding-right: 1em;
 }
 
 h1 {
 	color: red;
+	text-align: center;
 }

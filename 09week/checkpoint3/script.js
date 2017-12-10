@@ -95,15 +95,15 @@ class BitcoinComponent extends React.Component {
 		const displayAPIDataLAST = this.state.selectedCurrency[3];
 
 		return(
-			<div>
-				<div> 
+			<div className="container">
+				<nav> 
 					<h1> Current Bitcoin Values by Currency </h1>
 					<button data-name="USD" type="button" className="btn btn-primary" onClick={this.displayData} >USD</button>
 					<button data-name="JPY" type="button" className="btn btn-primary" onClick={this.displayData} >JPY</button>
 					<button data-name="EUR" type="button" className="btn btn-primary" onClick={this.displayData} >EUR</button>
 					<button data-name="NZD" type="button" className="btn btn-primary" onClick={this.displayData} >NZD</button>
-				</div>
-				<div>
+				</nav>
+				<div className="displayAPIdata">
 					<p>{displayAPIDataCUR}</p>
 					<p>{displayAPIDataBUY}</p>
 					<p>{displayAPIDataSELL}</p>
