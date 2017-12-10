@@ -6,69 +6,100 @@ class BitcoinComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			apiData: []
+			apiData: [],
+			selectedCurrency: ["Click a currency to see the current value in Bitcoin"]
 		}
 		this.displayData = this.displayData.bind(this);
 	}
 
 	componentWillMount(){
-		// Data Storage Array
-		//const store = []
-		// API Information
+		// Fetch Call
 		const url = `https://blockchain.info/ticker`; 
 			// show the url in the console
-			console.log("FETCH OBJECT: ", URL); 
+			console.log("Fetch: ", URL); 
 			// define options
 			const options = {
 				method: 'GET',
 				headers: {'content-type': 'application/json'}
 			}
-		// Call API data
+		// Call data
 		fetch(url, options)
 		.then((response) => {
 			// show the response in the console
-            console.log("RESPONSE: ", response); 
+            console.log("Response: ", response); 
             // return the api data
 			return response.json();
 		})
 		// Store data
 		.then((data) => {		
-			// show the data in console
-            console.log("DATA: ", data); 
+			// console log data
+            console.log("Data: ", data); 
             // store data
-			//store.push(data); 
 			this.setState({apiData:data})
-			// console check object state
-			const objectLog = this.state.apiData;
-			const propertyLog = this.state.apiData['USD']['buy'];
-			console.log("NEW STATE: ", objectLog);
-			console.log("PROPERTY: ", propertyLog);
+			// console log object state
+			// const objectLog = this.state.apiData;
+			// const propertyLog = this.state.apiData['USD']['buy'];
+			// console.log("New apiData State: ", objectLog);
+			// console.log("Property USD Buy: ", propertyLog);
 		});
 	}
 
-	displayData() {
-		console.log("!!ONCLICK WORKS")
+	// Display data on button click
+	displayData(event) {
+		if (Object.keys(this.state.apiData).length) {
+			const USD = ["USD " + this.state.apiData.USD.symbol, 
+						 "Buy: " + this.state.apiData.USD.buy, 
+						 "Sell: " + this.state.apiData.USD.sell,
+						 "Last: " + this.state.apiData.USD.last];
+
+	        // display selected currency data
+			const selCurrency = event.target.getAttribute("data-name");
+			this.setState( {selectedCurrency:USD} );
+		
+			// console log clicked event
+			console.log("vvvvvv ONCLICK EVENT vvvvvv");
+			console.log("USD Array ", USD);
+	        console.log("Element Value: ", event.target.getAttribute("data-name"));
+			console.log("New selectedCurrency State: ", this.state.selectedCurrency);
+		}	
 	}
 
 	render(){
 
-		// const USDbuy = this.state.apiData.USD.buy; // reference property
-		// const USD = this.state.apiData.USD; // reference USD and all its properties
-		// const allCurrencies = this.state.apiData // list all currencies
-
-		if (Object.keys(this.state.apiData).length) {
-			// const exchangeData = this.state.apiData.map((item, index) => {
-			// 	return <p>{value}</p> 
-			// });
-		}
+		// Selected Currency Values
+		const displayAPIDataCUR = this.state.selectedCurrency[0];
+		const displayAPIDataBUY = this.state.selectedCurrency[1];
+		const displayAPIDataSELL = this.state.selectedCurrency[2];
+		const displayAPIDataLAST = this.state.selectedCurrency[3];
 
 		return(
-			<div> 
-				<h1> hello </h1>
-				<button type="button" className="btn btn-primary" onClick={this.displayData}>USD</button>
+			<div>
+				<div> 
+					<h1> Current Bitcoin Values by Currency </h1>
+					<button data-name="USD" type="button" className="btn btn-primary" onClick={this.displayData} >USD</button>
+					<button data-name="JPY" type="button" className="btn btn-primary" onClick={this.displayData} >JPY</button>
+					<button data-name="EUR" type="button" className="btn btn-primary" onClick={this.displayData} >EUR</button>
+					<button data-name="NZD" type="button" className="btn btn-primary" onClick={this.displayData} >NZD</button>
+				</div>
+				<div>
+					<p>{displayAPIDataCUR}</p>
+					<p>{displayAPIDataBUY}</p>
+					<p>{displayAPIDataSELL}</p>
+					<p>{displayAPIDataLAST}</p>
+				</div>
 			</div>
 		)
 	}
 }
 
 ReactDOM.render(<BitcoinComponent />, document.getElementById('bitcoin'));
+
+// const USDbuy = this.state.apiData.USD.buy; // reference property
+// const USD = this.state.apiData.USD; // reference USD and all its properties
+// const allCurrencies = this.state.apiData // list all currencies
+
+// if (Object.keys(this.state.apiData).length) {
+	// 	// const exchangeData = this.state.apiData.map((item, index) => {
+	// 	// 	return <p>{value}</p> 
+	// 	// });
+// }
