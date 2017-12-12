@@ -96,7 +96,7 @@ class BitcoinComponent extends React.Component {
 
 		return(
 			<div className="container">
-					<h1> Current Bitcoin Values <br/> by Currency </h1>
+				<h1> Current Bitcoin Values <br/> by Currency </h1>
 				<div> 
 					<button data-name="USD" type="button" className="btn btn-warning" onClick={this.displayData} >USD</button>
 					<button data-name="JPY" type="button" className="btn btn-warning" onClick={this.displayData} >JPY</button>
