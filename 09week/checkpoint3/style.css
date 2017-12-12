@@ -16,10 +16,11 @@ body {
 	justify-content: center;
 	width: 900px;
 	padding: 4em;
+	margin: 100px;
 }
 
 nav {
-
+	
 }
 
 .displayAPIdata p {
@@ -28,6 +29,6 @@ nav {
 }
 
 h1 {
-	color: red;
+	color: black;
 	text-align: center;
 }
