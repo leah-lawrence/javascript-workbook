@@ -5,7 +5,13 @@ body {
 /*  background-image: url("http://rs724.pbsrc.com/albums/ww247/ccj5100/Bitcoin/bitcoin-rotate_zps0fswyhns.gif~c200");*/
 	background-color: black;
 	display: flex;
-	justify-content: center;
+   	flex-direction: row;
+   	align-items: center;
+   	justify-content: center;
+}
+
+#bitcoin{
+	
 }
 
 .container {
@@ -20,12 +26,6 @@ body {
 	border-radius: 20px;
 }
 
-.displayAPIdata p {
-	font-size: 1em;
-	text-align: center;
-	margin-top: 1em;
-}
-
 h1 {
 	color: black;
 	text-align: center;
@@ -34,4 +34,10 @@ h1 {
 
 .btn {
 	margin: 1em;
+}
+
+.displayAPIdata p {
+	font-size: 1em;
+	text-align: center;
+	margin-top: 1em;
 }
